@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8" />
+    <title>Underwater Species Detection</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="/static/script/script.js" defer></script>
+    <link rel="stylesheet" href="/static/style/styles.css">
+    <script src="https://cdn.jsdelivr.net/npm/progressbar.js@1.1.0/dist/progressbar.js"></script>
+</head>
+<body>
+    <div class="Container1">
+        <h1>Underwater Species Detection and Web Exploration</h1>
+
+        <div class="upload">
+            <h2 style="text-align: center; font-size: 250%;">Select a file...</h2>
+            <div class="wrapper">
+                <div class="file-upload">
+                    <input type="file" id="videoFile" name="videoFile" accept="video/mp4,video/x-matroska,video/quicktime,video/x-msvideo"/>
+                    <i>↑</i>
+                    
+                </div>
+            </div>
+            <h5 style="text-align: center; font-size: 120%;" id="fileName"></h5>
+            <div class="center">
+                <input type="button" value="Upload" id="uploadButton">
+            </div>
+        </div>
+    </div>
+
+    <div id="Container2" style="display: none;">
+        <hr style="margin: 6% 13% 0% 13%;">
+        <h2>Original Video</h2>
+        <div id="videoPlayer1Container">
+            <video id="videoPlayer1" controls>
+                <source src="" type="video/mp4,video/x-matroska,video/quicktime,video/x-msvideo">
+                Your browser does not support the video tag.
+            </video>
+        </div>
+        <div class="center">
+            <button id="detectButton">Detect</button>
+        </div>
+    </div>
+
+    <div id="Container3" style="display: none;">
+        <hr style="margin: 6% 13% 0% 13%;">
+        <h2>Species Detected Video</h2>
+        <div id="progressBarContainer">
+            <div id="progressBar"></div>
+        </div>
+        <div id="videoPlayer2Container" style="display: none;">
+            <video id="videoPlayer2" controls>
+                <source src="" type="video/mp4">
+                Your browser does not support the video tag.
+            </video>
+        </div>
+    </div>
+
+    <div class = "speciesContainer" id="speciesContainer" style="display: none;">
+        <hr style="margin: 6% 13% 0% 13%;">
+        <h1>Detected Species</h1>
+        <a href="#speciesContainer" onclick="show('popup2', 'Seahorse')" id="Seahorse"  style="display: none; margin: 10px; float: left; box-shadow: 5px 10px #888888; background-color: #3569d7; border-radius: 15px 50px 30px; margin-top: 2.5%;">
+            <div class = "imageContainer">
+                <figure>
+                    <img src="/static/images/Seahorse.jpg" alt="">
+                    <figcaption>Sea Horse</figcaption>
+                </figure>
+            </div>
+        </a>
+        <a href="#speciesContainer" onclick="show('popup2', 'Pinniped')" id="Pinniped" style="display: none;">
+            <div class = "imageContainer">
+                <figure>
+                    <img src="/static/images/Seal.jpg" alt="">
+                    <figcaption>Seal</figcaption>
+                </figure>
+            </div>
+        </a>
+        <a href="#speciesContainer" onclick="show ('popup2', 'Shark')" id="Shark" style="display: none;">
+            <div class = "imageContainer">
+                <figure>
+                    <img src="/static/images/Shark.jpg" alt="">
+                    <figcaption>Shark</figcaption>
+                </figure>
+            </div>
+        </a>
+        <a href="#speciesContainer" onclick="show ('popup2', 'Stingray')" id="Stingray" style="display: none;">
+            <div class = "imageContainer">
+                <figure>
+                    <img src="/static/images/Sea-Ray.jpg" alt="">
+                    <figcaption>Sea Ray</figcaption>
+                </figure>
+            </div>
+        </a>
+        <a href="#speciesContainer" onclick="show ('popup2', 'Sea-Urchin')" id="Sea-Urchin" style="display: none;">
+            <div class = "imageContainer">
+                <figure>
+                    <img src="/static/images/Sea-Urchin.jpg" alt="">
+                    <figcaption>Sea Urchin</figcaption>
+                </figure>
+            </div>
+        </a>
+        <a href="#speciesContainer" onclick="show ('popup2', 'Dolphin')" id="Dolphin" style="display: none;">
+            <div class = "imageContainer">
+                <figure>
+                    <img src="/static/images/Dolphin.jpg" alt="">
+                    <figcaption>Dolphin</figcaption>
+                </figure>
+            </div>
+        </a>
+        <a href="#speciesContainer" onclick="show ('popup2', 'Starfish')" id="Starfish" style="display: none;">
+            <div class = "imageContainer">
+                <figure>
+                    <img src="/static/images/Star-Fish.jpg" alt="">
+                    <figcaption>Star Fish</figcaption>
+                </figure>
+            </div>
+        </a>
+        <a href="#speciesContainer" onclick="show ('popup2', 'PufferFish')" id="PufferFish" style="display: none;">
+            <div class = "imageContainer">
+                <figure>
+                    <img src="/static/images/Puffer.jpg" alt="">
+                    <figcaption>Puffer</figcaption>
+                </figure>
+            </div>
+        </a>
+        <a href="#speciesContainer" onclick="show ('popup2', 'Eel')" id="Eel" style="display: none;">
+            <div class = "imageContainer">
+                <figure>
+                    <img src="/static/images/Eel.jpg" alt="">
+                    <figcaption>Eel</figcaption>
+                </figure>
+            </div>
+        </a>
+        <a href="#speciesContainer" onclick="show ('popup2', 'JellyFish')" id="JellyFish" style="display: none;">
+            <div class = "imageContainer">
+                <figure>
+                    <img src="/static/images/Jelly-Fish.jpg" alt="">
+                    <figcaption>Jelly Fish</figcaption>
+                </figure>
+            </div>
+        </a>
+    </div>
+
+    <div class="popup" id="popup2">
+        <div id="btnContainer">
+            <button onclick="hide('popup2')" id="crossBtn" style="position: fixed;">X</button>
+        </div>
+        <div id="InfoContainer" style="height: 500px; overflow: auto;">
+            <div id="Information">
+                <H1></H1>
+                <p></p>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
